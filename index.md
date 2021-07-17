@@ -1,12 +1,12 @@
 PONG GAME
 
-1.0 Introduction
+*1.0 Introduction
 
   Pong is a table tennis–themed arcade sports video game with rudimentary two-dimensional graphics that was released in 1972 by Atari. It was one of the first arcade video games, developed by Allan Alcorn as a practice run for Atari co-founder Nolan Bushnell. Pong was the first commercially viable video game, and it, together with the Magnavox Odyssey, helped to start the video game industry. Several businesses began making games that closely resembled its gameplay soon after its release. Afterwards, Atari's competitors released new sorts of video games that departed from Pong's original style to varied degrees, prompting Atari to encourage its workers to look beyond Pong and create other innovative games. Pong's sequels, which added new features to the original's gameplay, were released by Atari. Atari offered a home version of Pong exclusively through Sears retail shops during the 1975 Christmas season. The home version was also a commercial hit, spawning a slew of clones. Following its initial release, the game was remade for a variety of home and portable systems. Because of its cultural significance, Pong is part of the Smithsonian Institution's permanent collection in Washington, D.C.
 
 
 
-2.0 Overview
+*2.0 Overview
 
 A ball bounces on a screen in the pong game. The user can make the ball bounce back up by using a paddle (which is operated by a mouse in this case).
 
@@ -19,7 +19,7 @@ Datapath Unit: The movement of the ball after we bounce it back using a paddle.
 
 
 
-3.0 Procedures to create the coding for the Pong Game (Software Part)
+*3.0 Procedures to create the coding for the Pong Game (Software Part)
 
 3.1 Drawing a VGA monitor
 
@@ -122,7 +122,7 @@ We can now use it to create a border around the screen.
 Very difficult. But, we managed to go throughh with it. That is all the steps we needed.
 
 
-4.0 Equipments and Apparatus
+*4.0 Equipments and Apparatus
 
 a) FPGA board MAX II EPM240T100C5N
 
@@ -144,7 +144,7 @@ i) Mouse
 
 
 
-5.0 Procedures to connect the Hardware Parts to the Laptop
+*5.0 Procedures to connect the Hardware Parts to the Laptop
 
 a) First, we connected the wires from the breadboard to the FPGA.
 
@@ -163,13 +163,13 @@ f) Run the quartus simulation and the image of the Pong game will pop up.
 
 
 
-6.0 Acknowledgement
+*6.0 Acknowledgement
 
 We would like to thank the lecturer for offering advices and assistance whenever we were confused when completing all of the tasks assigned to us especially Dr.  Muhammad Mun'im bin Ahmad Zabidi. Finally, the great teamwork spirit and contributions of all the participants in Group CADNoKokyu Section 1 of this CAD with HDL subject are greatly appreciated.
 
 
 
-7.0 References
+*7.0 References
 
 a) Mohamed Khalil-Hani. Modern Digital System Design With FPGA School Of Electrical Engineering Universiti Teknologi Malaysia, PP. 1-275, January 2021.
 
