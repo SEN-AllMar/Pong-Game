@@ -83,34 +83,13 @@ We can now use it to create a border around the screen.
 
 - The secret is revealed on the quadrature decoder page. The syntax is as follows:
 
-reg [8:0] PaddlePosition;
-reg [2:0] quadAr, quadBr;
-always @(posedge clk) quadAr <= {quadAr[1:0], quadA};
-always @(posedge clk) quadBr <= {quadBr[1:0], quadB};
+![image](https://user-images.githubusercontent.com/87557430/126027924-9209e065-8da8-4aae-9f47-962d19bccf46.png)
 
-always @(posedge clk)
-if(quadAr[2] ^ quadAr[1] ^ quadBr[2] ^ quadBr[1])
-begin
-  if(quadAr[2] ^ quadBr[1])
-  begin
-    if(~&PaddlePosition)
-      PaddlePosition <= PaddlePosition + 1;
-  end
-  else
-  begin
-    if(|PaddlePosition)
-      PaddlePosition <= PaddlePosition - 1;
-  end
-end
 
 - We can now display the paddle because we already done the PaddlePosition value.
 
-wire border = (CounterX[9:3]==0) || (CounterX[9:3]==79) || (CounterY[8:3]==0) || (CounterY[8:3]==59);
-wire paddle = (CounterX>=PaddlePosition+8) && (CounterX<=PaddlePosition+120) && (CounterY[8:4]==27);
+![image](https://user-images.githubusercontent.com/87557430/126028008-a7ca9f3f-f458-4f82-b61d-b306c33db007.png)
 
-wire R = border | (CounterX[3] ^ CounterY[3]) | paddle;
-wire G = border | paddle;
-wire B = border | paddle;
 
 3.7 Drawing the ball
 
@@ -118,71 +97,27 @@ wire B = border | paddle;
 
 - We begin by displaying the ball. It's a 16x16 pixel square. When CounterX and CounterY reach the ball's coordinates, we activate the drawing.
 
-reg [9:0] ballX;
-reg [8:0] ballY;
-reg ball_inX, ball_inY;
+![image](https://user-images.githubusercontent.com/87557430/126028045-2212f198-e59e-4732-891f-6e29f4afd4da.png)
 
-always @(posedge clk)
-if(ball_inX==0) ball_inX <= (CounterX==ballX) & ball_inY; else ball_inX <= !(CounterX==ballX+16);
-
-always @(posedge clk)
-if(ball_inY==0) ball_inY <= (CounterY==ballY); else ball_inY <= !(CounterY==ballY+16);
-
-wire ball = ball_inX & ball_inY;
 
 - Now comes the fun part: the collisions. That is the most difficult aspect of this project.
 
 - We could compare the coordinates of the ball to each object on the screen to see if there is a collision. However, as the number of objects grows, this becomes a nightmare.
 
-
-
 - Instead, we define four "hot-spot" pixels, one on each side of the ball. If an object (border or paddle) redraws itself at the same time the ball redraws one of its "hot-spots," we know there is a collision on that side of the ball.
 
-wire border = (CounterX[9:3]==0) || (CounterX[9:3]==79) || (CounterY[8:3]==0) || (CounterY[8:3]==59);
-wire paddle = (CounterX>=PaddlePosition+8) && (CounterX<=PaddlePosition+120) && (CounterY[8:4]==27);
-wire BouncingObject = border | paddle; // active if the border or paddle is redrawing itself
+![image](https://user-images.githubusercontent.com/87557430/126028104-1b08dcba-ec5a-4190-a2e2-f1d9d99abe45.png)
 
-reg CollisionX1, CollisionX2, CollisionY1, CollisionY2;
-always @(posedge clk) if(BouncingObject & (CounterX==ballX ) & (CounterY==ballY+ 8)) CollisionX1<=1;
-always @(posedge clk) if(BouncingObject & (CounterX==ballX+16) & (CounterY==ballY+ 8)) CollisionX2<=1;
-always @(posedge clk) if(BouncingObject & (CounterX==ballX+ 8) & (CounterY==ballY )) CollisionY1<=1;
-always @(posedge clk) if(BouncingObject & (CounterX==ballX+ 8) & (CounterY==ballY+16)) CollisionY2<=1;
 
 - We now update the ball position only once per video frame.
 
-reg UpdateBallPosition;
-always @(posedge clk) UpdateBallPosition <= (CounterY==500) & (CounterX==0);
+![image](https://user-images.githubusercontent.com/87557430/126028117-147613c2-249a-41bc-aba2-540f0832b0f7.png)
 
-reg ball_dirX, ball_dirY;
-always @(posedge clk)
-if(UpdateBallPosition)
-begin
-  if(~(CollisionX1 & CollisionX2))        
-  begin
-    ballX <= ballX + (ball_dirX ? -1 : 1);
-    if(CollisionX2) ball_dirX <= 1; else if(CollisionX1) ball_dirX <= 0;
-  end
-
-  if(~(CollisionY1 & CollisionY2
-  begin
-    ballY <= ballY + (ball_dirY ? -1 : 1);
-    if(CollisionY2) ball_dirY <= 1; else if(CollisionY1) ball_dirY <= 0;
-  end
-end
 
 - Finally, we can put everything together.
 
-wire R = BouncingObject | ball | (CounterX[3] ^ CounterY[3]);
-wire G = BouncingObject | ball;
-wire B = BouncingObject | ball;
+![image](https://user-images.githubusercontent.com/87557430/126028123-c55e5424-af38-48a4-b391-ab0b73f9e35d.png)
 
-reg vga_R, vga_G, vga_B;
-always @(posedge clk)
-begin
-  vga_R <= R & inDisplayArea;
-  vga_G <= G & inDisplayArea;
-  vga_B <= B & inDisplayArea;
-end
 
 Very difficult. But, we managed to go throughh with it. That is all the steps we needed.
 
@@ -219,8 +154,11 @@ We would like to thank the lecturer for offering advices and assistance whenever
 7.0 References
 
 a) Mohamed Khalil-Hani. Modern Digital System Design With FPGA School Of Electrical Engineering Universiti Teknologi Malaysia, PP. 1-275, January 2021.
+
 b) Harris, D. M., &amp; Harris, S. L. (2013). Digital design and computer architecture. Morgan Kaufmann. 
+
 c) Intro to Verilog - MIT. (n.d.). http://web.mit.edu/6.111/www/f2017/handouts/L03_4.pdf. 
+
 d) Sutherland, S. (2002). Verilog-2001: a guide to the new features of the Verilog hardware description language (3rd ed., Vol. 2, Ser. 5). Kluwer Academic. 
 
 
