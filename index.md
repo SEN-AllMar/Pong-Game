@@ -125,13 +125,21 @@ Very difficult. But, we managed to go throughh with it. That is all the steps we
 4.0 Equipments and Apparatus
 
 a) FPGA board MAX II EPM240T100C5N
+
 b) USB blaster
+
 c) VGA to HDMI adaptor
+
 d) Jumpers/Wires
+
 e) Laptop
+
 f) Resistors
+
 g) Microcontroller Power Board (0.5V)
+
 h) Breadboard
+
 i) Mouse
 
 
@@ -139,10 +147,15 @@ i) Mouse
 5.0 Procedures to connect the Hardware Parts to the Laptop
 
 a) First, we connected the wires from the breadboard to the FPGA.
+
 b) FPGA is powered by a microcontroller power board with 0.5V.
+
 c) Wires are connected to the VGA cable. The VGA cable was connected to the laptop using a VGA to HDMI cable adapter.
+
 d) USB blaster is connected to the FPGA and to the laptop to detect the FPGA software in the laptop.
+
 e) Software is run using Quatus II. FPGA was connected and detected. 
+
 f) Run the quartus simulation and the image of the Pong game will pop up.
 
 6.0 Acknowledgement
