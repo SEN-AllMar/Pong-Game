@@ -158,6 +158,11 @@ e) Software is run using Quatus II. FPGA was connected and detected.
 
 f) Run the quartus simulation and the image of the Pong game will pop up.
 
+![2](https://user-images.githubusercontent.com/87557430/126028253-8555514d-b378-4f4c-b0fc-683e3515705f.jpg)
+
+
+
+
 6.0 Acknowledgement
 
 We would like to thank the lecturer for offering advices and assistance whenever we were confused when completing all of the tasks assigned to us especially Dr.  Muhammad Mun'im bin Ahmad Zabidi. Finally, the great teamwork spirit and contributions of all the participants in Group CADNoKokyu Section 1 of this CAD with HDL subject are greatly appreciated.
