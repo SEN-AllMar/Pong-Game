@@ -119,7 +119,7 @@ We can now use it to create a border around the screen.
 ![image](https://user-images.githubusercontent.com/87557430/126028123-c55e5424-af38-48a4-b391-ab0b73f9e35d.png)
 
 
-Very difficult. But, we managed to go throughh with it. That is all the steps we needed.
+Very difficult. But, we managed to go through with it. That is all the steps we needed.
 
 
 *4.0 Equipments and Apparatus*
